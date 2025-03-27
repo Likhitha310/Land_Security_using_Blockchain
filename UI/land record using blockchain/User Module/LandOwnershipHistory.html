@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f4f4f4;
+}
+
+/* Header */
+header {
+    background: #333;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left_area h3 {
+    font-size: 20px;
+}
+
+.left_area span {
+    color: #ffcc00;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #222;
+    color: white;
+    position: fixed;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+.sidebar center img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #444;
+}
+
+.logout_button {
+    background: #ff4d4d;
+    border: none;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.logout_button:hover {
+    background: #cc0000;
+}
+
+/* Main Content */
+.content {
+    margin-left: 260px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+/* Forms & Buttons */
+.table_form {
+    width: 100%;
+}
+
+.dropDown_list {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.Upload_btn {
+    background: #008cba;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.Upload_btn:hover {
+    background: #005f73;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #007bff;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 210px;
+    }
+}
+
+      </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+        <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+      </center>
+      <a href="Notification.html"><i class="fas fa-bell"></i><span>Notification</span></a>
+      <a href="landOwnershipHistory.html"><i class="fas fa-history"></i><span>Land Owner History</span></a>
+      <a href="LandOwnership.html"><i class="fas fa-id-card"></i><span>Proof of Ownership</span></a>
+      <a href="LandCorrectionForm.html"><i class="fas fa-check-square"></i><span>Land Data Correction</span></a>
+      <a href="OwnershipTransfer.html"><i class="fas fa-exchange-alt"></i><span>Transfer Of Ownership</span></a>
+      <a href="MyAccount.html"><i class="fas fa-user"></i><span>My Account</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+
+    <form action="">
+          <div class="card">
+            <h2>Land Ownership History</h2>
+            <table class="table_form">
+              <tr>
+                <td>Land Id</td>
+              </tr>
+              <tr>
+                <td><select id="landId" class="dropDown_list" oninput="validity.valid||(value='');" name="" value=""></select></td>
+              </tr>
+
+                <tr><td colspan="2">
+                  <input id="search" onclick="loadHistory()" name="" value="Search" class="Upload_btn" required>
+                    </td>
+                </tr>
+            </table>
+          </div>
+    </form>
+
+        <div class="card">
+            <table style="table-layout:fixed; width:950px;word-wrap:break-word;">
+                <thead>
+                    <tr>
+                        <th>From User ID</th>
+                        <th>To User ID</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                </tbody>
+            </table>
+        </div>
+  </div>
+  </body>
+
+<script>
+    $(document).ready(function(){
+            //get uerid
+            var id = sessionStorage.getItem('Login_User_Id');
+            var role = sessionStorage.getItem('Login_role');
+            if(role===null || id===null || role!='User'){
+                alert("Authnetication Failed!!");
+                window.location.href = "../login/index.html";
+                return;
+            }
+            $('#setusername').text(sessionStorage.getItem('Login_username'));
+
+        $.ajaxSetup({
+        async: false
+        });
+        $.getJSON("http://localhost:8080/OwnedLands/"+id,function(data){
+            console.log(id,data);
+            $.each(data, function(i, value){
+                    $('#landId').append(new Option(value,value));
+                });
+        });
+    });
+
+	function loadHistory() {
+
+ 		$.getJSON("http://localhost:8080/LandHistory/"+$("#landId").val(),function(data){
+            console.log(JSON.stringify(data));
+            setTableData(data);
+        });
+	}
+
+    function setTableData(data){
+        if(Object.keys(data).length<1){
+                        alert("No data Found");
+                        return;
+        }
+            $.each(data, function(key,value) {
+                var s="<tr><td>";
+//                console.log(value.value1);
+                s+=getName(value.value1);
+                s+="</td><td>";
+                s+=getName(value.value2);
+                s+="</td><td>"+value.value3+"</td></tr>";
+//                console.log(s);
+                $("#dataTable").append(s);
+            });
+    }
+
+    function getName(val){
+        var s="";
+        $.ajax({
+                type: "get",
+                url: "http://localhost:8080/UserName/"+val,
+                async:false,
+                dataType: 'text',
+                success: function(response) {
+                    console.log(response);
+                    s+=response;
+                },
+                error: function(response) {
+//                    console.log(JSON.stringify(response));
+//                    s=response["responseText"];
+                }
+            });
+        return s;
+    }
+    
+    function logOut(){
+        console.log("Logout clicked");
+        sessionStorage.removeItem('Login_User_Id');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_username');
+         window.location.href = "../login/index.html";
+    }
+</script>
+</html>
+
+
+
+<!---->

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <style>
+        /* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  display: flex;
+}
+
+/* Header */
+header {
+  background: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.left_area h3 {
+  font-size: 22px;
+}
+
+.left_area span {
+  color: #29b6f6;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #2c3e50;
+  padding-top: 90px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+  text-align: start;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 12px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: #1a252f;
+}
+
+.profile_image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Main Content */
+.content {
+  margin-left: 260px;
+  padding: 20px;
+  width: calc(100% - 260px);
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.Upload_btn {
+  background: #29b6f6;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.Upload_btn:hover {
+  background: #0288d1;
+}
+
+.logout_button {
+  background: #e74c3c;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.logout_button:hover {
+  background: #c0392b;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background: #29b6f6;
+  color: white;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+  .content {
+    margin-left: 210px;
+    width: calc(100% - 210px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+      </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+                <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+      </center>
+      <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="NewLandRec.html"><i class="fas fa-plus-square"></i><span>Add New land Record</span></a>
+      <a href="LoanRecords.html"><i class="fas fa-money-check"></i><span>Loan Details</span></a>
+      <a href="TaxRecords.html"><i class="fas fa-rupee-sign"></i><span>Tax Details</span></a>
+      <a href="CorrectionRequest.html"><i class="fas fa-clipboard-check"></i><span>Correction Request</span></a>
+      <a href="UserDetails.html"><i class="fas fa-user-plus"></i><span>User Details</span></a>
+      <a href="settings.html"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+      <a href="CreateUser.html" class="Upload_btn" style="margin-top: 70px;">Create New User</a><br><br>
+
+          <div class="card">
+            <h2>Search User</h2>
+              <table class="table_form">
+                <tr>
+                  <td> User Id</td>
+                </tr>
+                <tr>
+                  <td><input id="userId" type="text" class="user_input"></td>
+                </tr>
+                <tr><td colspan="3"><hr></td></tr>
+                <tr><td></td><td><b>OR</b></td></tr>
+
+                  <tr>
+                    <td> Username </td>
+                    <td> Role </td>
+                  </tr>
+                <tr>
+                  <td><input id="username" type="text" class="user_input"></td>
+                  <td><select id="role" class="dropDown_list">
+                        <option value="non">Please Select User Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Tahsildar">Tahsildar</option>
+                        <option value="Registrar">Registrar</option>
+                      </select></td>
+                </tr>
+                  <tr>
+                        <button id="Search" name="" value="Search" class="Upload_btn">Search</button>
+                  </tr>
+              </table>
+           </div>
+        <div class="card">
+            <table style="table-layout:fixed; width:950px;word-wrap:break-word;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Role</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Name</th>
+                        <th>District</th>
+                        <th>Taluka</th>
+                        <th>SystemAddress</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                </tbody>
+            </table>
+        </div>
+  </div>
+  </body>
+
+    <script>
+    $(document).ready(function(){
+        var id = sessionStorage.getItem('Login_Admin_Id');
+        var role = sessionStorage.getItem('Login_role');
+         if(role===null || id===null || role!='Admin'){
+                alert("Only Admin Can Access this!!");
+                window.location.href = "../Admin Module/Dashboard.html";
+                return;
+            }
+        console.log(sessionStorage.getItem('Login_Admin_username'));
+        $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+
+        //Filter values
+        var userId=[];
+        $.ajax({
+        url: "http://localhost:8080/TahsildarDetails",
+        success: function(data){
+            if(Object.keys(data).length<1){
+                        alert("No data Found");
+                        return;
+            }
+            for(var i=0; i<data.length; i++){
+                    //Filter values
+                    userId.push(data[i]["id"]);
+                   }
+                setTable(data);
+             //Filter Data
+            $("#userId").autocomplete({
+                source: Array.from(new Set(userId))
+            });
+        }
+        });
+
+
+        $("#Search").click(function(){
+            $("#dataTable").empty();
+            if($("#userId").val()!=""){
+                $.getJSON("http://localhost:8080/TahsildarDetails/"+$("#userId").val(), function(data){
+                    if(Object.keys(data).length<1){
+                        alert("No data Found");
+                        return;
+                    }
+                    //console.log(JSON.stringify(data));
+                    var keys= Object.keys(data);
+                    var s="<tr>";
+                        for(k of keys){
+                            s+="<td>"+data[k]+"</td>";
+                        };
+                        s+="</tr>";
+                        $("#dataTable").append(s);
+                });
+            }
+            else if($("#role").val()!="non"){
+                $.getJSON("http://localhost:8080/UsersByRole",{"username":$("#username").val(),"role" :  $("#role").val()}, function(data){ setTable(data); });
+                }
+            else if($("#userId").val()=="" && $("#role").val()=="non"){
+                $.getJSON("http://localhost:8080/TahsildarDetails", function(data){ setTable(data); });
+            }
+          });
+
+    });
+
+    function setTable(data){
+        if(Object.keys(data).length<1){
+                alert("No data Found");
+                return;
+           }
+                    console.log(JSON.stringify(data));
+                    var keys= Object.keys(data[0]);
+                    $.each(data, function(i, value){
+                            var s="<tr>";
+                            for(k of keys){
+                                s+="<td>"+value[k]+"</td>";
+                            }
+                            s+="</tr>";
+                            $("#dataTable").append(s);
+                        });
+    }
+
+    function clearFilter(){
+            $("#role").val("");
+            $("#userId").val("");
+    }
+    
+
+
+     function logOut(){
+        console.log("clicked");
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_Admin_username');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Administrator_System_Address');
+            window.location.href = "../login/LoginAdministrator.html";
+    }
+    </script>
+</html>
+
+
+
+<!---->

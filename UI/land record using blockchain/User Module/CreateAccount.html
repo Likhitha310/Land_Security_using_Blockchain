@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript" src="../js/custom.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  </head>
+  <style>
+    /* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+header {
+  position: fixed;
+  background: #2f4050;
+  padding: 20px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.left_area h3 {
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.left_area h3 span {
+  color: #f39c12;
+}
+
+#sidebar_btn {
+  font-size: 22px;
+  cursor: pointer;
+  color: white;
+  margin-left: 20px;
+}
+
+.right_area {
+  margin-right: 20px;
+}
+
+
+/* Form Container */
+.container {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  color: white;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* Form Table */
+.table_form {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Labels */
+.table_form td:first-child {
+  text-align: right;
+  font-weight: 500;
+  padding-right: 15px;
+  width: 35%;
+  vertical-align: middle;
+}
+
+/* Inputs & Select Fields */
+.user_input,
+.dropDown_list,
+input[type="date"],
+input[type="file"],
+input[type="number"],
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Placeholder Color */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus,
+select:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Radio Buttons */
+.radio_btn {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+/* Submit Button */
+.Upload_btn {
+  width: 100%;
+  background: #ff9800;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s ease-in-out;
+}
+
+.Upload_btn:hover {
+  background: #ff5722;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .table_form td {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px 0;
+  }
+
+  .table_form td:first-child {
+      text-align: left;
+      font-weight: bold;
+      padding-bottom: 5px;
+  }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+      /* td {
+          width: 33%;
+          } */
+  </style>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <br/><br/>
+    <div style="padding: 50px;">
+
+    <form id="createAccountForm" action="">
+        <div class="card">
+            <h2>Create Account</h2><hr>
+            <table class="table_form">
+                <tr><td><b>Personal Details</b></td></tr>
+                <tr>
+                    <td>First Name</td>
+                    <td>Middle Name</td>
+                    <td>Last Name</td>
+                </tr>
+                <tr>
+                    <td><input id="fname" type="text" name="" value="" class="user_input" oninput="validity.valid||(value='');" required></td>
+                    <td><input id="mname" type="text" name="" value="" class="user_input" oninput="validity.valid||(value='');" required></td>
+                    <td><input id="lname" type="text" name="" value="" class="user_input" oninput="validity.valid||(value='');" required></td>
+                </tr>
+                <tr>
+                    <td>DOB</td>
+                    <td>Gender</td>
+                    <td>Mail-ID</td>
+                </tr>
+
+                <tr>
+                  <td><input id="dob" type="date"  max="2019-12-25" min="1950-12-25" class="user_input" required> </td>
+                  <td><input type="radio" name="gender_radio" value="No" class="radio_btn" required>Male
+                      <input type="radio" name="gender_radio" value="Yes" class="radio_btn" required>Female</td>
+                  <td><input id="mail" type="text" name="" value="" class="user_input" ></td>
+                </tr>
+
+                <tr>
+                  <td>Occupation</td>
+                  <td>Mobile Number</td>
+                </tr>
+                <tr>
+                  <td> <select id="occupation"  class="dropDown_list" required>
+                        <option value="">Please Select Occupation</option>
+                        <option value="Agriculture, Food and Natural Resources">Agriculture, Food and Natural Resources</option>
+                        <option value="Business Management and Administration">Business Management and Administration</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Manufacturing">Manufacturing</option>
+                        <option value="Human Services">Human Services</option>
+                        <option value="Health Science">Health Science</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Marketing, Sales and Service">Marketing, Sales and Service</option>
+                        <option value="Government and Public Administration">Government and Public Administration</option>
+                        <option value="Law, Public Safety, Corrections and Security">Law, Public Safety, Corrections and Security</option>
+                        <option value="Transportation, Distribution and Logistics">Transportation, Distribution and Logistics</option>
+                        <option value="Education and Training">Education and Training</option>
+                        <option value="Hospitality and Tourism">Hospitality and Tourism</option>
+                        <option value="Arts, Audio/Video Technology and Communications">Arts, Audio/Video Technology and Communications</option>
+                        <option value="Science, Technology, Engineering and Mathematics">Science, Technology, Engineering and Mathematics</option>
+                        <option value="Other">Other</option>
+                    </select></td>
+                  <td><input id="mobileNo" type="number"  min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                  </tr>
+                <tr><td colspan="3"><hr/></td></tr>  <!--Horizontal Line-->
+                <tr><td><b>Address Details</b></td></tr>
+                <tr>
+                  <td>House No </td>
+                  <td>Road Name/Area/Colony</td>
+                  <td>City</td>
+                </tr>
+                <tr>
+                  <td><input id="houseNo" type="text" name="" value="" class="user_input" required></td>
+                  <td><input id="colony" type="text" name="" value="" class="user_input" required ></td>
+                  <td><input id="city" type="text" name="" value="" class="user_input" required></td>
+                </tr>
+                <tr>
+                    <td>Taluka</td>
+                    <td>Pincode</td>
+                </tr>
+                <tr>
+                    <td><input id="taluka" type="text" name="" value="" class="user_input" oninput="validity.valid||(value='');" required></td>
+                   <td><input id="pincode" type="number"  min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                </tr>
+                <tr><td colspan="3"><hr/></td></tr>  <!--Horizontal Line-->
+                <tr><td><b>ID-Proof Details</b></td></tr>
+                <tr>
+                    <td>Adhar Number </td>
+                    <td>Select Id type</td>
+                </tr>
+                <tr>
+                    <td><input id="aadharNo" type="number"  min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                    <td><select id="idType"  class="dropDown_list" required>
+                          <option value="Please Select Id Proof Type">Please Select Id Proof Type</option>
+                          <option value="">Driving licence</option>
+                          <option value="">VoterId</option>
+                          <option value="">Pan Card</option>
+                          <option value="">Adhar Card</option>
+                        </select></td>
+                </tr>
+                <tr>
+                  <td>Id Proof</td>
+                </tr>
+                <tr>
+                  <td><input id="file" type="file" name="file" value="file" class="user_input" required></td>
+                </tr>
+                <tr><td colspan="3"><hr/></td></tr>  <!--Horizontal Line-->
+                <tr><td><b>Account Details</b></td></tr>
+                <tr>
+                  <td>User Name</td>
+                  <td>Password</td>
+                  <td>Retype Password</td>
+                </tr>
+                <tr>
+                  <td><input id="username" type="text" name="" value="" class="user_input" required></td>
+                  <td><input id="password" type="text" name="" value="" class="user_input" required></td>
+                    <td><input id="rpassword" type="text" name="" value="" class="user_input" required></td>
+                </tr>
+              </table>
+           </div>
+                  <input id="" type="submit" name="" value="Create Account" class="Upload_btn" required>
+    </form>
+  </div>
+
+<script type="text/javascript" language="javascript">
+
+            $( "#createAccountForm" ).submit(function( event ) {
+                //data to pass
+                var name= $('#fname').val()+" "+$('#mname').val()+" "+$('#lname').val();
+                var address=$('#houseNo').val()+", "+$('#colony').val()+", "+$('#city').val()+", "+$('#taluka').val()+", "+$('#pincode').val();
+
+                var form = new FormData();
+                form.append("name", name);
+                form.append("emailId", $('#mail').val());
+                form.append("dob", $('#dob').val());
+                form.append("gender", $("input[name='gender_radio']:checked").val());
+                form.append("occupation",$('#occupation').children("option:selected").val());
+                form.append("mobileNo", $('#mobileNo').val());
+                form.append("address", address);
+                form.append("aadharNo", $('#aadharNo').val());
+                form.append("idProofType",$('#idType').children("option:selected").val());
+                form.append("username",$('#username').val());
+                form.append("password",$('#password').val());
+                form.append("role","User");
+                form.append("file",$('#file')[0].files[0]);
+                for (var pair of form.entries())
+                {
+                 console.log(pair[0]+ ', '+ pair[1]);
+                }
+                alert("Calling API");
+                $.ajax({
+                    async: true,
+                    type: "post",
+                    url: "http://localhost:8080/UserDetails",
+                    
+                    data: form,//{file:filename,land_id:id},
+                    cache:false,
+                    enctype: 'multipart/form-data',
+                    processData:false,
+                    contentType: false,
+                    
+                    success: function(response) {
+                        alert("Details saved" +JSON.stringify(response) );
+                    },
+                    error: function(response) {
+                        alert(JSON.stringify(response));
+                        console.log(JSON.stringify(response));
+                    }
+                });
+            });
+
+</script>
+  </body>
+</html>
+
+
+
+-->

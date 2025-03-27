@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<title>Land Digitization Using Blockchain - Admin login</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<style>
+			/* Google Font */
+			@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+	
+			/* Reset */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'Poppins', sans-serif;
+			}
+	
+			body {
+				background: #f0f2f5;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+			}
+	
+			.form-container {
+				background: white;
+				padding: 30px;
+				border-radius: 12px;
+				box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+				width: 350px;
+				text-align: center;
+			}
+	
+			.form-container i {
+				font-size: 60px;
+				color: #3498db;
+				margin-bottom: 10px;
+			}
+	
+			h2 {
+				color: #333;
+				margin-bottom: 15px;
+			}
+	
+			.user-input {
+				width: 100%;
+				padding: 12px;
+				margin: 10px 0;
+				border: 1px solid #ccc;
+				border-radius: 8px;
+				font-size: 16px;
+				outline: none;
+				transition: 0.3s;
+			}
+	
+			.user-input:focus {
+				border-color: #3498db;
+				box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+			}
+	
+			.btn {
+				width: 100%;
+				background: #3498db;
+				color: white;
+				border: none;
+				padding: 12px;
+				font-size: 18px;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: 0.3s;
+			}
+	
+			.btn:hover {
+				background: #2980b9;
+			}
+	
+			.options {
+				margin-top: 10px;
+				font-size: 14px;
+			}
+	
+			.options a {
+				color: #3498db;
+				text-decoration: none;
+			}
+	
+			.options a:hover {
+				text-decoration: underline;
+			}
+		</style>
+
+	</head>
+	<body>
+		<!--form area start-->
+		<div class="form">
+			<!--login form start-->
+            <form id="loginForm" onsubmit="login();return false" >
+				<i class="fas fa-user-circle"></i>
+				<input class="user-input" type="text" id="username" placeholder="Username" required>
+				<input class="user-input" type="password" id="password" placeholder="Password" required>
+				<div class="options-01">
+					<!--<label class="remember-me"><input type="checkbox" name="">Remember me</label>-->
+					<a href="#">Forgot your password?</a>
+				</div>
+				<input class="btn" type="submit" id="LogIn" value="LOGIN">
+			</form>
+			<!--login form end-->
+			<!--signup form start
+			<form class="signup-form">
+				<i class="fas fa-user-plus"></i>
+				<input class="user-input" type="text" name="" placeholder="Username" required>
+				<input class="user-input" type="email" name="" placeholder="Email Address" required>
+				<input class="user-input" type="password" name="" placeholder="Password" required>
+				<input class="btn" type="submit" name="" value="SIGN UP">
+				<div class="options-02">
+					<p>Already Registered? <a href="#">Sign In</a></p>
+				</div>
+			</form>-->
+			<!--signup form end-->
+		</div>
+		<!--form area end-->
+
+<script type="text/javascript">
+//    $('.options-02 a').click(function(){
+//        $('form').animate({
+//            height: "toggle", opacity: "toggle"
+//        }, "slow");
+//    });
+
+    function login() {
+         $.ajax({
+        url: "http://localhost:8080/login",
+        data:{"username":$("#username").val(),"password":$("#password").val()},
+        async: false,
+        timeout: 5000,
+        success: function(data){
+            console.log(data);
+            sessionStorage.setItem('Login_Admin_Id', data['id']);
+            sessionStorage.setItem('Login_Admin_username', data['username']);
+            sessionStorage.setItem('Login_role', data['role']);
+            sessionStorage.setItem('Login_Administrator_System_Address', data['systemAddress']);
+//            sessionStorage.setItem('Login_', data['']);
+            alert("Login Sucessful");
+            if(data['role']=='Admin')
+                window.location.href = "../Admin Module/Dashboard.html";
+            else if(data['role']=='Tahsildar')
+                window.location.href = "../Admin Module/Dashboard.html";
+            else if(data['role']=='Registrar')
+                window.location.href = "../Registrar/Dashboard.html";
+        },
+        error: function(response) {
+            console.log(JSON.stringify(response));
+            alert("Login Failed");
+            }
+        });
+        console.log("Clicked");
+    }
+</script>
+	</body>
+</html>

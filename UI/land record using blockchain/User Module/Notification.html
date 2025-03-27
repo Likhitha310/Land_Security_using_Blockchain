@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: #f4f4f4;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.left_area h3 {
+    font-size: 20px;
+    color: white;
+}
+
+.left_area span {
+    color: #f4a261;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 250px;
+    height: calc(100% - 60px);
+    background: #2c3e50;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar a:hover {
+    background: #34495e;
+}
+
+.profile_image {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.logout_button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.logout_button:hover {
+    background: #c0392b;
+}
+
+/* Content */
+.content {
+    margin-left: 250px;
+    margin-top: 50px;
+    padding: 20px;
+    flex-grow: 1;
+    transition: margin-left 0.3s;
+    width: calc(100% - 250px);
+}
+
+/* Notification Card */
+.card {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.card h2 {
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        overflow: hidden;
+    }
+    .sidebar a span {
+        display: none;
+    }
+    .content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+    }
+}
+      </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization <br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+        <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+      </center>
+      <a href="Notification.html"><i class="fas fa-bell"></i><span>Notification</span></a>
+      <a href="landOwnershipHistory.html"><i class="fas fa-history"></i><span>Land Owner History</span></a>
+      <a href="LandOwnership.html"><i class="fas fa-id-card"></i><span>Proof of Ownership</span></a>
+      <a href="LandCorrectionForm.html"><i class="fas fa-check-square"></i><span>Land Data Correction</span></a>
+      <a href="OwnershipTransfer.html"><i class="fas fa-exchange-alt"></i><span>Transfer Of Ownership</span></a>
+      <a href="MyAccount.html"><i class="fas fa-user"></i><span>My Account</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+        <div id="notifications" class="card">
+            <h2>Notification</h2>
+
+        </div>
+  </div>
+
+<script>
+    $(document).ready(function(){
+            //get uerid
+            var id = sessionStorage.getItem('Login_User_Id');
+            var role = sessionStorage.getItem('Login_role');
+            if(role===null || id===null || role!='User'){
+                alert("Authnetication Failed!!");
+                window.location.href = "../login/index.html";
+                return;
+            }
+            $('#setusername').text(sessionStorage.getItem('Login_username'));
+        $.getJSON("http://localhost:8080/NotificationsForUser?toId="+id, function(data){
+            setnotifications(data);
+        });
+    });
+
+    function setnotifications(data){
+        if(data.length<1){
+            s="No notifications Found";
+            $("#notifications").append(s);
+            return;
+        }
+        $.each(data, function(i, value){
+            var from = value["fromId"];
+            var heading=value["heading"];
+            var desc=value["details"];
+            var timestamp=value["timestamp"];
+            if(jQuery.isEmptyObject(value["data"])){
+                    setDetails(from,heading,desc,timestamp);
+            }
+            else{
+                console.log("files set");
+                 var arrrayBuffer = base64ToArrayBuffer(value["data"]); //data is the base64 encoded string
+                 var blob = new Blob([arrrayBuffer], {type: value["documentType"]});
+                 var file = window.URL.createObjectURL(blob);
+                 setDetailsWithFile(from,heading,desc,timestamp,file);
+                 //window.open(link,'', 'height=650,width=840'); //OPen in new tab
+             }
+        });
+    }
+
+
+    function setDetails(from,heading,desc,timestamp){
+        var s='<div style="margin-bottom: 10px;" onmouseover="this.style.backgroundColor =\'#c1cdcd\'" onmouseout="this.style.backgroundColor =\'\'"><div style=\'box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border-radius: 5px; padding: 2px 16px; overflow: hidden;\'><h4>'+heading+'</h4><p>'+desc+'</p><span style="float:right;">'+timestamp+'</span></div></div>';
+        //<h5>From '+from+'</h5> //setting from attributes
+        $("#notifications").append(s);
+    }
+    function setDetailsWithFile(from,heading,desc,timestamp,file){
+        var s='<div style="margin-bottom: 10px;" onmouseover="this.style.backgroundColor =\'#c1cdcd\'" onmouseout="this.style.backgroundColor =\'\'"><div style=\'box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border-radius: 5px; padding: 2px 16px; overflow: hidden;\'><h4>'+heading+'</h4><p>'+desc+'</p><button onclick="window.open('+file+',\'File\',\'height=650,width=840\')">File</button><span style="float:right;">'+timestamp+'</span></div></div>';
+        $("#notifications").append(s);
+    }
+    //files
+    function base64ToArrayBuffer(base64) {
+        var binaryString = window.atob(base64);
+        var binaryLen = binaryString.length;
+        var bytes = new Uint8Array(binaryLen);
+        for (var i = 0; i < binaryLen; i++) {
+            var ascii = binaryString.charCodeAt(i);
+            bytes[i] = ascii;
+        }
+        return bytes;
+    }
+    
+    function logOut(){
+        console.log("Logout clicked");
+        sessionStorage.removeItem('Login_User_Id');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_username');
+         window.location.href = "../login/index.html";
+    }
+</script>
+  </body>
+</html>
+
+<!---->

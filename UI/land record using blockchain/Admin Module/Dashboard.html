@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <style>
+      /* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background: #2c3e50;
+    padding-top: 20px;
+    color: white;
+}
+
+.sidebar center img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebar a:hover {
+    background: #34495e;
+}
+
+/* Header */
+header {
+    background: #2c3e50;
+    height: 60px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    position: fixed;
+    width: calc(100% - 250px);
+    left: 250px;
+}
+
+.left_area h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+/* Content */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+.wrapper {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dash_head h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Dashboard Cards */
+.dashboard-stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.dashboard-stat .visual i {
+    font-size: 30px;
+}
+
+.dashboard-stat .details {
+    text-align: right;
+}
+
+.dashboard-stat .number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dashboard-stat .desc {
+    font-size: 16px;
+}
+
+/* Colors for Stats */
+.red { background: #e74c3c; }
+.blue { background: #3498db; }
+.hoki { background: #16a085; }
+
+.dashboard-stat:hover {
+    opacity: 0.8;
+}
+
+    </style>
+</head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+        <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+      </center>
+      <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="NewLandRec.html"><i class="fas fa-plus-square"></i><span>Add New land Record</span></a>
+      <a href="LoanRecords.html"><i class="fas fa-money-check"></i><span>Loan Details</span></a>
+      <a href="TaxRecords.html"><i class="fas fa-rupee-sign"></i><span>Tax Details</span></a>
+      <a href="CorrectionRequest.html"><i class="fas fa-clipboard-check"></i><span>Correction Request</span></a>
+      <a href="UserDetails.html"><i class="fas fa-user-plus"></i><span>User Details</span></a>
+      <a href="settings.html"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+
+      <div class="wrapper container">
+        <div class="row">
+          <div class="col-lg-12">
+            <span class="dash_head"><h2>Dashboard Statistics</h2></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="">
+            <a class="dashboard-stat red" href="#">
+              <div class="visual">
+                <i class="fas fa-tasks"></i>
+              </div>
+              <div class="details">
+                <div class="number">
+                  <span>0</span>
+                </div>
+                <div class="desc">Correction Request</div>
+              </div>
+            </a>
+          </div>
+          <div class="">
+            <a class="dashboard-stat blue" href="#">
+              <div class="visual">
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <div class="details">
+                <div class="number">
+                  <span>0</span>
+                </div>
+                <div class="desc">Pending Request</div>
+              </div>
+            </a>
+          </div>
+          <div class="">
+            <a class="dashboard-stat hoki" href="#">
+              <div class="visual">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="details">
+                <div class="number">
+                  <span>1</span>
+                </div>
+                <div class="desc">Corrected Request</div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+<script>
+    $(document).ready(function(){
+            //get uerid
+            var id = sessionStorage.getItem('Login_Admin_Id');
+            var role = sessionStorage.getItem('Login_role');
+            if(role===null || id===null || role!='Admin'){
+                if(role!='Tahsildar') {
+                alert("Authnetication Failed!!");
+                window.location.href = "../login/LoginAdministrator.html";
+                return;
+                }
+            }
+        console.log(sessionStorage.getItem('Login_Admin_username'));
+        $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+    });
+
+    function logout(){
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Admin_username');
+        window.location.href = "../login/LoginAdministrator.html";
+    }
+
+
+     function logOut(){
+        console.log("clicked");
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_Admin_username');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Administrator_System_Address');
+            window.location.href = "../login/LoginAdministrator.html";
+    }
+    
+</script>
+</html>

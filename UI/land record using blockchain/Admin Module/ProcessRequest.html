@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background: #2c3e50;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+}
+
+header .left_area h3 {
+    color: white;
+    font-size: 22px;
+}
+
+header .left_area span {
+    color: #f39c12;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #34495e;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    padding-top: 20px;
+    transition: all 0.3s;
+}
+
+.sidebar center {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.sidebar .profile_image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+}
+
+.sidebar h4 {
+    color: white;
+    margin-top: 10px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+}
+
+.sidebar a:hover {
+    background: #f39c12;
+    color: black;
+}
+
+/* Content Area */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    margin-top: 80px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+/* Buttons */
+.Upload_btn, .logout_button {
+    background: #f39c12;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+}
+
+.Upload_btn:hover, .logout_button:hover {
+    background: #e67e22;
+}
+
+/* Inputs */
+.user_input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* PDF Viewer */
+#PDFview iframe {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+    }
+    
+    .sidebar a {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .sidebar a span {
+        display: none;
+    }
+
+    .content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+    }
+
+    header .left_area h3 {
+        font-size: 18px;
+    }
+}
+
+      </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+          <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+    </center>
+        <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+        <a href="NewLandRec.html"><i class="fas fa-plus-square"></i><span>Add New land Record</span></a>
+        <a href="LoanRecords.html"><i class="fas fa-money-check"></i><span>Loan Details</span></a>
+        <a href="TaxRecords.html"><i class="fas fa-rupee-sign"></i><span>Tax Details</span></a>
+        <a href="CorrectionRequest.html"><i class="fas fa-clipboard-check"></i><span>Correction Request</span></a>
+        <a href="UserDetails.html"><i class="fas fa-user-plus"></i><span>User Details</span></a>
+        <a href="settings.html"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+          <div class="card row mx-md-n5" style="display: table; clear: both;  width: 99%;">
+            <h2>Process Request</h2><br/>
+            <div id="PDFview" class="ng-scope pdfobject-container" style="float: right; margin-right: 10px; display: flex; flex: 50%; width: 45%; height: 500px">
+                <iframe src="" type="application/pdf" width="100%" height="100%" style="overflow: auto;">
+    </iframe>
+            </div>
+            <div id="requestData" class="col px-md-5" style="float: left; display: flex; flex: 50%; width: 50%;">
+              <table class="table_form">
+
+                <tr>
+                    <td> Correction Id</td>
+                    <td><input id="correctionId" type="text" name="" class="user_input" readonly/></td>
+                </tr>
+                <tr>
+                    <td> Owner Id</td>
+                    <td><input id="ownerId" type="text" name="" class="user_input" readonly/></td>
+                </tr>
+                <tr>
+                    <td> Land Id </td>
+                    <td><input id="landId" type="text" name="" class="user_input" readonly/></td>
+                </tr>
+                <tr> <td> Correction Fields</td>
+                <td><div id="correctionFields"></div></td>
+                </tr>
+                <tr>
+                  <td>Correction Value</td>
+                  <td><div id="correctionValue"></div></td>
+                </tr>
+                <tr>
+                    <td> Correction Details</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background-color: #e7e7e7"><span id="details">This is text of Span element.</span>
+                    </td>
+                </tr>                <tr> <td> Timestamp </td>
+                <td><input id="timestamp" type="text" name="" value="" size="40" class="user_input" readonly/></td>
+                </tr>
+
+                <tr>
+                    <td><a href="ProcessRequest2.html" class="Upload_btn">Process</a></td>
+                </tr>
+              </table>
+            </div>
+           </div>
+  </div>
+
+     <script>
+        $(document).ready(function(){
+            var id = sessionStorage.getItem('Login_Admin_Id');
+            var role = sessionStorage.getItem('Login_role');
+             if(role===null || id===null || role!='Admin'){
+                if(role!='Tahsildar') {
+                alert("Authnetication Failed!!");
+                window.location.href = "../login/LoginAdministrator.html";
+                return;
+                }
+            }
+            const urlParam=new URLSearchParams(location.search);
+            var id=urlParam.get('id');
+
+            $.getJSON("http://localhost:8080/CorrectionRequests/"+id, function(data){ setData(data); });
+
+            console.log(sessionStorage.getItem('Login_Admin_username'));
+            $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+        });
+
+         function setData(data){
+             //set session Storage
+             sessionStorage.removeItem("correctionFields");
+             sessionStorage.removeItem("correctionValue");
+             sessionStorage.removeItem("landId");
+             sessionStorage.removeItem("id");
+              sessionStorage.setItem("correctionFields",data["correctionFields"]);
+              sessionStorage.setItem("correctionValue",data["correctValues"]);
+              sessionStorage.setItem("landId",data["landId"]);
+              sessionStorage.setItem("id",data["id"]);
+             //set attributes
+             $("#correctionId").val(data["id"]);
+             $("#ownerId").val(data["ownerId"]);
+             $("#landId").val(data["landId"]);
+             $("#details").html(data["details"]);
+             $("#timestamp").val(data["timestamp"]);
+
+             var x=data["correctionFields"].split(';');
+             for(value of x){
+                $("#correctionFields").append("<h5 style='background-color: #e7e7e7;'>"+value+"</h5>");
+             }
+             x=data["correctValues"].split(';');
+             for(value of x){
+                $("#correctionValue").append("<h5 style='background-color: #e7e7e7;'>"+value+"</h5>");
+             }
+             //pdf
+             var arrrayBuffer = base64ToArrayBuffer(data["data"]); //data is the base64 encoded string
+                            var blob = new Blob([arrrayBuffer], {type: "application/pdf"});
+                            var file = window.URL.createObjectURL(blob);
+                            document.querySelector("iframe").src = file;
+                            //window.open(link,'', 'height=650,width=840'); //OPen in new tab
+         }
+                            function base64ToArrayBuffer(base64) {
+                                var binaryString = window.atob(base64);
+                                var binaryLen = binaryString.length;
+                                var bytes = new Uint8Array(binaryLen);
+                                for (var i = 0; i < binaryLen; i++) {
+                                    var ascii = binaryString.charCodeAt(i);
+                                    bytes[i] = ascii;
+                                }
+                                return bytes;
+                            }
+
+     function logOut(){
+        console.log("clicked");
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_Admin_username');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Administrator_System_Address');
+            window.location.href = "../login/LoginAdministrator.html";
+    }
+    
+    </script>
+</body>
+</html>
+
+
+
+<!---->

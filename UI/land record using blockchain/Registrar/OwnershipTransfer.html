@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #2c3e50;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    transition: 0.3s;
+}
+
+.sidebar center {
+    text-align: center;
+}
+
+.profile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.sidebar h4 {
+    color: #fff;
+    margin: 10px 0;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+}
+
+.sidebar a:hover {
+    background: #34495e;
+}
+
+/* Header */
+header {
+    width: calc(100% - 250px);
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 250px;
+    transition: 0.3s;
+}
+
+.left_area h3 {
+    font-size: 22px;
+}
+
+.left_area span {
+    color: #e74c3c;
+}
+
+/* Logout Button */
+.logout_button {
+    background: #e74c3c;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout_button:hover {
+    background: #c0392b;
+}
+
+/* Content Area */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    margin-top: 70px;
+    width: calc(100% - 250px);
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+/* Buttons */
+.Upload_btn {
+    background: #2c3e50;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.Upload_btn:hover {
+    background: #34495e;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    header {
+        width: calc(100% - 200px);
+        left: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100px;
+    }
+
+    .sidebar a {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    header {
+        width: calc(100% - 100px);
+        left: 100px;
+    }
+
+    .content {
+        margin-left: 100px;
+        width: calc(100% - 100px);
+    }
+}
+
+      </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization <br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+        <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+      </center>
+      <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="OwnershipTransfer.html"><i class="fas fa-exchange-alt"></i><span>Ownership Transfer</span></a>
+      <a href="MyAccount.html"><i class="fas fa-user"></i><span>My Account</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+          <!--<div class="card">
+            <h2>Complete Correction Request</h2>
+              <table class="table_form">
+                <tr>
+                  <td> Transfer Request Id</td>
+                  <td> Land Id </td>
+                </tr>
+                <tr>
+                      <td><input id="transferRequestId" type="number" min="0" step="1" class="user_input"></td>
+                      <td><input id="landId" type="number" min="0" step="1" class="user_input"></td>
+                </tr>
+                <tr>
+                        <td colspan="3">
+                                <button id="Search" name="" value="Search" class="Upload_btn">Search</button>
+                                <button id="Clear" name="" value="Clear" class="Upload_btn" onclick="clearFilter();">Clear</button>
+                        </td>
+                  </tr>
+              </table>
+            </div> -->
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Land ID</th>
+                        <th>Area</th>
+                        <th>Owner Name</th>
+                        <th>Buyer ID</th>
+                        <th>Buyer Name</th>
+                        <th>Buyer Username</th>
+                        <th>Market Price</th>
+                        <th>Final Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </body>
+
+    <script>
+    $(document).ready(function(){
+        //Filter values
+        var id = sessionStorage.getItem('Login_Admin_Id');
+        var role = sessionStorage.getItem('Login_role');
+        if(role===null || id===null || role!='Registrar'){
+            alert("Authnetication Failed!!");
+            window.location.href = "../login/LoginAdministrator.html";
+            return;
+        }
+        $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+
+        $.getJSON("http://localhost:8080/TransactionRequest", function(data){ setTable(data); });
+    });
+
+    function setTable(data){
+        if(Object.keys(data).length<1){
+            alert("No data Found");
+            return;
+        }
+        var keys= Object.keys(data[0]);
+                    //console.log(JSON.stringify(data));
+                    $.each(data, function(i, value){
+                            var s="<tr>";
+                            for(k of keys){
+                                s+="<td>"+value[k]+"</td>";
+                            }
+                            var strinflink="ProcessRequest.html?id="+data[i]['id'];
+                            s+="<td><a href="+strinflink+" class='Upload_btn' style='background-color:black;'>Process</a></td></tr>"
+                            $("#dataTable").append(s);
+                        });
+    }
+        
+    function logOut(){
+        console.log("clicked");
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_Admin_username');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Administrator_System_Address');
+            window.location.href = "../login/LoginAdministrator.html";
+    }
+    </script>
+</html>
+
+<!---->

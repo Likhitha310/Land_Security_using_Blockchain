@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/custom.js"></script>
+    <style>
+      /* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body styling */
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #f4f4f4;
+}
+
+/* Header styling */
+header {
+    background: #2c3e50;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+header h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+header span {
+    color: #f1c40f;
+}
+
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 250px;
+    height: calc(100vh - 60px);
+    background: #34495e;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+
+.sidebar center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.sidebar .profile_image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #f1c40f;
+}
+
+.sidebar h4 {
+    color: white;
+    margin-top: 10px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #f1c40f;
+    color: #2c3e50;
+}
+
+.sidebar i {
+    margin-right: 10px;
+}
+
+/* Content area */
+.content {
+    margin-left: 250px;
+    padding: 80px 20px;
+}
+
+/* Card styling */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+/* Table styling */
+.table_form {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table_form th, .table_form td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table_form th {
+    background: #2c3e50;
+    color: white;
+}
+
+/* Input fields styling */
+.user_input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Button styling */
+.Upload_btn, .logout_button {
+    background: #f1c40f;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    display: block;
+    margin-top: 10px;
+}
+
+.Upload_btn:hover, .logout_button:hover {
+    background: #2c3e50;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 60px 10px;
+    }
+
+    .table_form th, .table_form td {
+        font-size: 14px;
+    }
+
+    .Upload_btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+    </style>
+  </head>
+
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+           <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+   </center>
+   <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+   <a href="NewLandRec.html"><i class="fas fa-plus-square"></i><span>Add New land Record</span></a>
+   <a href="LoanRecords.html"><i class="fas fa-money-check"></i><span>Loan Details</span></a>
+   <a href="TaxRecords.html"><i class="fas fa-rupee-sign"></i><span>Tax Details</span></a>
+   <a href="CorrectionRequest.html"><i class="fas fa-clipboard-check"></i><span>Correction Request</span></a>
+   <a href="UserDetails.html"><i class="fas fa-user-plus"></i><span>User Details</span></a>
+   <a href="settings.html"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+        <form id="loanDataForm" action="">
+              <div class="card">
+                <h2>Add Loan Details</h2>
+                  <table class="table_form">
+                    <tr>
+                      <td> Loan Id</td>
+                      <td> User Id</td>
+                      <td> Land Id</td>
+                    </tr>
+
+                    <tr>
+                      <td><input id="loanId" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                      <td><input id="userId" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                      <td><input id="landId" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                    </tr>
+                    <tr><td colspan="3"><hr></td></tr>
+                    <tr>
+                      <td> Loan End Date</td>
+                      <td> Loan Amount</td>
+                      <td> Loan Duration (in months)</td>
+                    </tr>
+
+                    <tr>
+                      <td><input id="enddate" type="date"  class="user_input" required></td>
+                      <td><input id="loanAmount" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                      <td><input id="loanDuration" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                    </tr>
+
+                    <tr><td colspan="3"><hr></td></tr>
+
+                      <tr>
+                          <td> Loan Reason</td>
+                      </tr>
+                      <tr><td colspan="3"><input id="loanReason" type="text" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td></tr>
+                  </table>
+               </div>
+                      <input id="Add" type="submit" name="" value=" Add Details " class="Upload_btn" required>
+        </form>
+      </div>
+  </body>
+
+
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+        //get uerid
+            var id = sessionStorage.getItem('Login_Admin_Id');
+            var role = sessionStorage.getItem('Login_role');
+         if(role===null || id===null || role!='Admin'){
+                if(role!='Tahsildar') {
+                alert("Authnetication Failed!!");
+                window.location.href = "../login/LoginAdministrator.html";
+                return;
+                }
+            }
+            console.log(sessionStorage.getItem('Login_Admin_username'));
+        $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+});
+
+    $( "#loanDataForm" ).submit(function( event ) {
+            //data to pass
+            var data = {
+                "id" : $('#loanId').val(),
+                "userId" : $('#userId').val(),
+                "landId": $('#landId').val(),
+                "endDate" : $('#enddate').val(),
+                "amount" : $('#loanAmount').val(),
+                "duration" : $('#loanDuration').val(),
+                "reason" : $('#loanReason').val()
+            };
+                 //alert(JSON.stringify(data));
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/Loans",
+                contentType : "application/json",
+                dataType : 'json',
+                data:JSON.stringify(data),
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(response) {
+                    console.log(JSON.stringify(response));
+                }
+            });
+    });
+    
+    
+     function logOut(){
+        console.log("clicked");
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_Admin_username');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Administrator_System_Address');
+            window.location.href = "../login/LoginAdministrator.html";
+    }
+    
+</script>
+
+</html>
+
+
+
+-->

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header Styles */
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left_area h3 {
+    color: white;
+    margin: 0;
+    font-size: 22px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #34495e;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #1abc9c;
+}
+
+/* Content Area */
+.content {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.table_form, table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+}
+
+/* Input and Button Styles */
+.user_input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.Upload_btn {
+    background: #2c3e50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Upload_btn:hover {
+    background: #1abc9c;
+}
+
+      </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+              <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+</center>
+      <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="NewLandRec.html"><i class="fas fa-plus-square"></i><span>Add New land Record</span></a>
+      <a href="LoanRecords.html"><i class="fas fa-money-check"></i><span>Loan Details</span></a>
+      <a href="TaxRecords.html"><i class="fas fa-rupee-sign"></i><span>Tax Details</span></a>
+      <a href="CorrectionRequest.html"><i class="fas fa-clipboard-check"></i><span>Correction Request</span></a>
+      <a href="UserDetails.html"><i class="fas fa-user-plus"></i><span>User Details</span></a>
+      <a href="settings.html"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+</div>
+    <!--sidebar end-->
+
+    <div class="content">
+          <div class="card">
+            <h2>Complete Correction Request</h2>
+              <table class="table_form">
+                <tr>
+                  <td> Correction Id</td>
+                  <td> Land Id </td>
+                </tr>
+                <tr>
+                      <td><input id="correctionId" type="number" min="0" step="1" class="user_input"></td>
+                      <td><input id="landId" type="number" min="0" step="1" class="user_input"></td>
+                </tr>
+                <tr>
+                        <td colspan="3">
+                                <button id="Search" name="" value="Search" class="Upload_btn">Search</button>
+                                <button id="Clear" name="" value="Clear" class="Upload_btn" onclick="clearFilter();">Clear</button>
+                        </td>
+                  </tr>
+              </table>
+            </div>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Owner ID</th>
+                        <th>Land ID</th>
+                        <th>Details</th>
+                        <th>Timestamp</th>
+                        <th>Status</th>
+                        <th>Process</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </body>
+
+    <script>
+    $(document).ready(function(){
+        //Filter values
+        var id = sessionStorage.getItem('Login_Admin_Id');
+        var role = sessionStorage.getItem('Login_role');
+         if(role===null || id===null || role!='Admin'){
+                if(role!='Tahsildar') {
+                alert("Authnetication Failed!!");
+                window.location.href = "../login/LoginAdministrator.html";
+                return;
+                }
+            }
+        console.log(sessionStorage.getItem('Login_Admin_username'));
+        $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+
+        var corrids=[];
+        var landids=[];
+
+        $.ajax({
+        url: "http://localhost:8080/CorrectionRequestsList",
+        success: function(data){
+            if(Object.keys(data).length<1){
+                alert("No data Found");
+                return;
+            }
+            for(var i=0; i<data.length; i++){
+                 //Filter values
+                    corrids.push(data[i][0]);
+                    landids.push(data[i][2]);
+                }
+            setTable(data);
+             //Filter Data
+            $("#correctionId").autocomplete({
+                source: Array.from(new Set(corrids))
+            });
+            $("#landId").autocomplete({
+                source: Array.from(new Set(landids))
+            });
+        }
+
+      });
+
+
+        $("#Search").click(function(){
+            $("#dataTable").empty();
+            if($("#correctionId").val()!=""){
+                $.getJSON("http://localhost:8080/CorrectionRequestsListById",{"id" :$("#correctionId").val()}, function(data){ setTable(data); });
+            }
+            else if($("#landId").val()){
+                $.getJSON("http://localhost:8080/CorrectionRequestsByLandId",{"landId" : $("#landId").val()}, function(data){ setTable(data); });
+                }
+          });
+
+    });
+
+    function setTable(data){
+        if(Object.keys(data).length<1){
+            alert("No data Found");
+            return;
+        }
+        var keys= Object.keys(data[0]);
+                    //console.log(JSON.stringify(data));
+                    $.each(data, function(i, value){
+                            var s="<tr>";
+                            for(k of keys){
+                                s+="<td>"+value[k]+"</td>";
+                            }
+                            var strinflink="ProcessRequest.html?id="+data[i][0];
+                            s+="<td><a href="+strinflink+" class='Upload_btn' style='background-color:black;'>Process</a></td></tr>"
+                            $("#dataTable").append(s);
+                        });
+    }
+
+    function clearFilter(){
+            $("#correctionId").val("");
+            $("#userId").val("");
+            $("#landId").val("");
+    }
+
+
+     function logOut(){
+        console.log("clicked");
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_Admin_username');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Administrator_System_Address');
+            window.location.href = "../login/LoginAdministrator.html";
+    }
+    </script>
+</html>
+<!---->

@@ -1,0 +1,127 @@
+/* General Styles */
+body {
+  background-color: #cbe7c2; /* Pista Green */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #52df75; /* Bright Green */
+  padding: 15px 20px;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  color: #1b3d1a; /* Dark Green */
+  text-align: center;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: #1b3d1a; /* Dark Green */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section p {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #3d6735; /* Muted Green */
+}
+
+/* Centered Search Container */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(82, 223, 117, 0.8); /* Light Transparent Green */
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-container input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-container button {
+  background: #1b3d1a; /* Dark Green */
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: white;
+  border-radius: 0 8px 8px 0;
+  outline: none;
+}
+
+.search-container button:hover {
+  background: #369d50; /* Vibrant Green */
+}
+
+/* Content Container */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.8); /* Light Transparent */
+  padding: 20px;
+  border-radius: 10px;
+  color: #1b3d1a; /* Dark Green */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* File List Styling */
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.file-list li {
+  padding: 12px;
+  border-bottom: 1px solid rgba(27, 61, 26, 0.2); /* Light Green Border */
+}
+
+.file-list li a {
+  color: #369d50; /* Vibrant Green */
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.file-list li a:hover {
+  color: #1b3d1a; /* Dark Green */
+  text-decoration: underline;
+}
+
+/* Folder Icons */
+.file-list li img {
+  width: 20px;
+  margin-right: 10px;
+  vertical-align: middle;
+}

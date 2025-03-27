@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        /* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h3 {
+    font-size: 22px;
+}
+
+header span {
+    color: #f1c40f;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #34495e;
+    color: white;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+
+.sidebar center {
+    margin-bottom: 20px;
+}
+
+.sidebar .profile_image {
+    width: 80px;
+    border-radius: 50%;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #2980b9;
+}
+
+/* Main Content */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+h2, h4 {
+    color: #2c3e50;
+}
+
+.table_form {
+    width: 100%;
+}
+
+.table_form td {
+    padding: 10px;
+}
+
+.user_input, .dropDown_list {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.user_input:focus, .dropDown_list:focus {
+    border-color: #3498db;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Logout Button */
+.logout_button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout_button:hover {
+    background: #c0392b;
+}
+
+      </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+        <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+      </center>
+      <a href="Notification.html"><i class="fas fa-bell"></i><span>Notification</span></a>
+      <a href="landOwnershipHistory.html"><i class="fas fa-history"></i><span>Land Owner History</span></a>
+      <a href="LandOwnership.html"><i class="fas fa-id-card"></i><span>Proof of Ownership</span></a>
+      <a href="LandCorrectionForm.html"><i class="fas fa-check-square"></i><span>Land Data Correction</span></a>
+      <a href="OwnershipTransfer.html"><i class="fas fa-exchange-alt"></i><span>Transfer Of Ownership</span></a>
+      <a href="MyAccount.html"><i class="fas fa-user"></i><span>My Account</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+
+    <form id="correctionForm" action="">
+          <div class="card">
+            <h2>Land Correction Details</h2>
+            <table class="table_form">
+              <tr>
+                <td>Select your Land Id</td>
+                  <td><select id="landId" class="dropDown_list" oninput="validity.valid||(value='');" name="" value=""></select></td>
+              </tr>
+                <tr>
+                  <td colspan="2"><hr></td>
+                </tr>
+              <tr>
+                <td><h4>Select Attributes for Correction</h4></td>
+                <!--<td><input type="checkbox" onclick="$('.attributes').attr('checked','checked');">Select All</td>-->
+              </tr>
+                <tr>
+                    <td><input value="surveyNo" type="checkbox" onclick='if($(this).is(":checked")){$("#surveyNo").attr("readonly", false);}else{$("#surveyNo").attr("readonly", true);}' class="attributes"> Survey Number</td>
+                      <td><input id="surveyNo" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" class="user_input" id="" readonly></td>
+                </tr>
+                <tr>
+                    <td><input value="registrationNo" type="checkbox" onclick='if($(this).is(":checked")){$("#registrationNo").attr("readonly", false);}else{$("#registrationNo").attr("readonly", true);}' class="attributes"> Registration number</td>
+                      <td><input id="registrationNo" type="number" min="0" step="1" oninput="validity.valid||(value='');"name="" value="" class="user_input" id="" readonly></td>
+                </tr>
+                <tr>
+                    <td><input value="registrationYear" type="checkbox" onclick='if($(this).is(":checked")){$("#registrationYear").prop("disabled", false);}else{$("#registrationYear").prop("disabled", false);}' class="attributes"> Registration year</td>
+                      <td>  <select id="registrationYear"  class="dropDown_list" disabled="true">
+                            <option value="Please Select Registration year">Please Select Registration year</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><input value="propertyType" type="checkbox" onclick='if($(this).is(":checked")){$("#propertyType").prop("disabled", false);}else{$("#propertyType").prop("disabled", false);}' class="attributes">Property type</td>
+                        <td><select id="propertyType"  name="" value="" class="dropDown_list" disabled>
+                          <option value="Movable">Movable</option>
+                          <option value="Immovable">Immovable</option>
+                          <option value="Tangible">Tangible</option>
+                          <option value="Intangible">Intangible</option>
+                          <option value="Private">Private</option>
+                          <option value="Public">Public</option>
+                          <option value="Personal">Personal</option>
+                          <option value="Real">Real</option>
+                          <option value="Corporeal">Corporeal</option>
+                          <option value="Incorporeal">Incorporeal</option>
+                          </select></td>
+                    </tr>
+                    <tr>
+                        <td><input value="mutationNumber" type="checkbox" onclick='if($(this).is(":checked")){$("#mutationNumber").attr("readonly", false);}else{$("#mutationNumber").attr("readonly", true);}' class="attributes">Mutation number</td>
+                        <td><input id="mutationNumber" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" readonly></td>
+                    </tr>
+                    <tr><td><input value="areaOfLand" type="checkbox" onclick='if($(this).is(":checked")){$("#areaOfLandM").prop("disabled", false);$("#areaOfLand").attr("readonly", false);}else{$("#areaOfLandM").prop("disabled", false);$("#areaOfLand").attr("readonly", true);}' class="attributes">Area of land</td>
+                    <td><input id="areaOfLand" type="number" min="0" step="0.01" oninput="validity.valid||(value='');" name="" value="" class="user_input" style="width:65%;" readonly>
+                        <select id="areaOfLandM" name="" class="dropDown_list" style="width: 10%;" disabled>
+                            <option value="sq.ft" selected="selected"> Square Feet</option>
+                            <option value="sq.m">Square Meter</option>
+                            <option value="acres">Acre</option>
+                            <option value="hectare">Hectare</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><input value="typeOfLand" type="checkbox" onclick='if($(this).is(":checked")){$("#typeOfLand").prop("disabled", false);}else{$("#typeOfLand").prop("disabled", false);}' class="attributes">Type of land</td>
+                        <td><select id="typeOfLand" name="" value="" class="dropDown_list" disabled>
+                          <option value="Agricultural" selected="selected">Agricultural</option>
+                          <option value="Non-agricultural">Non-agricultural</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><input value="typeOfIrrigation" type="checkbox" onclick='if($(this).is(":checked")){$("#typeOfIrrigation").prop("disabled", false);}else{$("#typeOfIrrigation").prop("disabled", false);}' class="attributes">Type of irrigation</td>
+                        <td><select id="typeOfIrrigation" name="" value="" class="dropDown_list" disabled>
+                          <option value="">Please Select Type of Irrigation</option>
+                          <option value="Warkas land">Warkas land</option>
+                          <option value="Jirayat land (Dry crop)">Jirayat land (Dry crop)</option>
+                          <option value="Bagayat land">Bagayat land</option>
+                          <option value="Rice land">Rice land</option>
+                        </select></td>
+                   <tr><td colspan="2"><hr></td></tr>
+                   <tr><td><h4>Address Details</h4></td></tr>
+                     <tr>
+                          <td><input value="address" type="checkbox" onclick='if($(this).is(":checked")){$("#address").attr("readonly", false);}else{$("#address").attr("readonly", true);}'>Address</td>
+                          <td><input  id="address" type="text" name="" value="" class="user_input" readonly></td>
+                        </tr>
+                        <tr>
+                          <td><input value="district" type="checkbox" onclick='if($(this).is(":checked")){$("#DistrictSel").prop("disabled", false);}else{$("#DistrictSel").prop("disabled", false);}'>District</td>
+                          <td><select id="district" name="District" size="1" class="dropDown_list" disabled>
+                          <option value="" selected="selected">Select District</option>
+                          </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input value="taluka" type="checkbox" onclick='if($(this).is(":checked")){$("#TalukaSel").prop("disabled", false);}else{$("#TalukaSel").prop("disabled", false);}'>Tahsil</td>
+                          <td><select id="taluka" name="Taluka" size="1"class="dropDown_list" disabled>
+                          <option value="" selected="selected">Please select District first</option>
+                          </select>
+                          </td>
+                      </tr>
+
+                        <tr>
+                          <td><input value="city" type="checkbox" onclick='if($(this).is(":checked")){$("#city").attr("readonly", false);}else{$("#city").attr("readonly", true);}'>City</td>
+                          <td>
+                          <input id="city" type="text" name="" value="" class="user_input" readonly>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input value="pincode" type="checkbox" onclick='if($(this).is(":checked")){$("#pincode").attr("readonly", false);}else{$("#pincode").attr("readonly", true);}'>Pin code</td>
+                          <td><input id="pincode" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" readonly></td>
+                        </tr>
+                <tr><td colspan="2"><hr></td></tr>
+                <tr><td><h4>Owner Details</h4></td></tr>
+                <tr>
+                    <td><input value="ownerName" type="checkbox" onclick='if($(this).is(":checked")){$("#ownerName").attr("readonly", false);}else{$("#ownerName").attr("readonly", true);}'>Owner name</td>
+                    <td><input id="ownerName" type="text" name="" value="" class="user_input" readonly></td>
+                  </tr>
+                  <tr>
+                    <td><input value="ownerAadhar" type="checkbox" onclick='if($(this).is(":checked")){$("#ownerAadhar").attr("readonly", false);}else{$("#ownerAadhar").attr("readonly", true);}'>Owner Aadhar</td>
+                    <td><input id="ownerAadhar" type="text" name="" value="" class="user_input" readonly></td>
+                  </tr>
+
+                    <tr>
+                      <td><input value="typeOfCrop" type="checkbox" onclick='if($(this).is(":checked")){$("#typeOfCrop").prop("disabled", false);}else{$("#typeOfCrop").prop("disabled", false);}'>Type of crop cultivated in last season</td>
+                      <td> <select id="typeOfCrop" class="dropDown_list" name="" value="" disabled>
+                        <option value="">Please Select Crop</option>
+                        <option value="None">None</option>
+                        <option value="Jowar">Jowar</option>
+                        <option value="Bajra">Bajra</option>
+                        <option value="Wheat">Wheat</option>
+                        <option value="Cotton">Cotton</option>
+                        <option value="Rice">Rice</option>
+                        <option value="Sugarcane">Sugarcane</option>
+                        <option value="Nagali">Nagali</option>
+                        <option value="Groundnut">Groundnut</option>
+                        <option value="Urad">Urad</option>
+                        <option value="Mung">Mung</option>
+                        <option value="Tur">Tur</option>
+                        <option value="Soybean">Soybean</option>
+                        <option value="Millets">Millets</option>
+                        <option value="Coconuts">Coconuts</option>
+                        <option value="Grapes">Grapes</option>
+                        <option value="Mango">Mango</option>
+                        <option value="Banana">Banana</option>
+                        <option value="Cashew">Cashew</option>
+                        <option value="Peas">Peas</option>
+                        <option value="Barely">Barely</option>
+                      </select> </td>
+                </tr>
+                    <tr><td colspan="2"><hr></td></tr>
+                <tr>
+                    <td>Upload Proof Fields (in pdf format)</td>
+                    <td><input id="file" type="file" name="file" value="file" class="user_input" multiple required></td>
+                </tr>
+                <tr><td><h4>Request Message (Please modify it according your choice )</h4> </td></tr>
+                <tr>
+                    <td colspan="2"><textarea id="details" name="name" rows="5" cols="100" class="">Respected sir,
+I/We, (Your Name) as the Owner of land with id (Land Id) hereby apply for a correction request. Details of the correction values are provided.
+
+In order to facilitate consideration of my / our application, I / we attach the Checklist of Basic Requirements together with the required documents / information for your reference.
+</textarea></td>
+                </tr>
+                <tr><td colspan="2"><hr></td></tr>
+                <tr><td colspan="2"><input type="checkbox" id="declaration" required><label for="declaration">I have read and agree to the below Terms of Service</label></td></tr>
+
+                <tr><td colspan="2"><textarea id="declaration" name="name" rows="5" cols="110" class="">I/We hereby expressly warrant and declare that the above information provided in support of my I/our application is correct and genuine and I / we expressly acknowledge that I am / we are aware and accept that the decision on the application will be made by the Lands Department on the basis of the information supplied by me / us and may be immediately cancelled in the event that such information is found to be false or misleading.
+
+I/We further expressly acknowledge that the personal data provided by me I us in this application will be used by the Lands Department in connection with the processing of my / our application. The provision of any personal data requested in the application form is voluntary. I / We understand that if I / we do not provide sufficient information, the Lands Department may not be able to process my / our application. </textarea></td></tr>
+            </table>
+
+          </div>
+                  <input id="" type="submit" name="" value="Submit" class="Upload_btn" required>
+    </form>
+  </div>
+  </body>
+
+<script>
+    
+    var id = sessionStorage.getItem('Login_User_Id');
+    $(document).ready(function(){
+            //get uerid
+            var role = sessionStorage.getItem('Login_role');
+            if(role===null || id===null || role!='User'){
+                alert("Authnetication Failed!!");
+                window.location.href = "../login/index.html";
+                return;
+            }
+        $('#setusername').text(sessionStorage.getItem('Login_username'));
+        for(i=2020;i>1907;i--)
+            $('#registrationYear').append(new Option(i,i));
+
+        $.getJSON("http://localhost:8080/OwnedLands/"+id,function(data){
+            console.log(id,data);
+            $.each(data, function(i, value){
+                    $('#landId').append(new Option(value,value));
+                });
+        });
+    });
+    
+
+    $("#correctionForm").submit(function(event){
+        console.log("Clicked");
+        var correctionFields="";
+        var correctValues="";
+        $("input:checkbox").each(function(){
+            var $this = $(this);
+            if($this.attr("id")!="declaration"){
+                data_id=$this.attr("value");
+                if($this.is(":checked")){
+                        correctionFields+=data_id+";";
+                        correctValues+=$('#'+data_id).val()+";";
+                }
+            }
+        });  
+            console.log(correctionFields,correctValues);
+        
+		//all values with checked id
+        var form = new FormData();
+        form.append("ownerId",id);
+        form.append("landId",$('#landId').val());
+        form.append("correctionFields",correctionFields);
+        form.append("correctValues",correctValues);
+        form.append("details",$('#details').val());
+        form.append("file",$('#file')[0].files[0]);
+
+        $.ajax({
+            async: true,
+            type: "post",
+            url: "http://localhost:8080/CorrectionRequests",
+            data: form,//{file:filename,land_id:id},
+            cache:false,
+            enctype: 'multipart/form-data',
+            processData:false,
+            contentType: false,
+            dataType: 'text',
+            success: function(response) {
+                alert(JSON.stringify(response) );
+            },
+            error: function(response) {
+                alert(JSON.stringify(response));
+                console.log(JSON.stringify(response));
+            }
+        });
+        alert("Sucess");
+        //prevetn page reloading
+        event.preventDefault();
+    });
+    
+    function logOut(){
+        console.log("Logout clicked");
+        sessionStorage.removeItem('Login_User_Id');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_username');
+         window.location.href = "../login/index.html";
+    }
+</script>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+        <head>
+          <meta charset="utf-8">
+          <title>Land Digitization Using Blockchain </title>
+          <link rel="stylesheet" href="../css/style.css">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script type="text/javascript" src="../js/custom.js"></script>
+            <style>
+              /* General Styles */
+   * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       font-family: Arial, sans-serif;
+   }
+   
+   body {
+       background-color: #f4f4f4;
+       display: flex;
+   }
+   
+   /* Header */
+   header {
+       background: #2c3e50;
+       height: 60px;
+       width: 100%;
+       position: fixed;
+       top: 0;
+       left: 0;
+       display: flex;
+       align-items: center;
+       padding: 0 20px;
+       z-index: 100;
+   }
+   
+   header .left_area h3 {
+       color: white;
+       font-size: 22px;
+   }
+   
+   header .left_area span {
+       color: #f39c12;
+   }
+   
+   /* Sidebar */
+   .sidebar {
+       background: #34495e;
+       width: 250px;
+       height: 100vh;
+       position: fixed;
+       top: 60px;
+       left: 0;
+       padding-top: 20px;
+       transition: all 0.3s;
+   }
+   
+   .sidebar center {
+       text-align: center;
+       padding: 10px 0;
+   }
+   
+   .sidebar .profile_image {
+       width: 80px;
+       height: 80px;
+       border-radius: 50%;
+       background: white;
+       padding: 5px;
+   }
+   
+   .sidebar h4 {
+       color: white;
+       margin-top: 10px;
+   }
+   
+   .sidebar a {
+       display: block;
+       color: white;
+       padding: 12px 20px;
+       text-decoration: none;
+       font-size: 16px;
+       transition: 0.3s;
+   }
+   
+   .sidebar a i {
+       margin-right: 10px;
+   }
+   
+   .sidebar a:hover {
+       background: #f39c12;
+       color: black;
+   }
+   
+   /* Content Area */
+   .content {
+       margin-left: 250px;
+       padding: 20px;
+       width: calc(100% - 250px);
+       margin-top: 80px;
+   }
+   
+   .card {
+       background: white;
+       padding: 20px;
+       margin: 20px 0;
+       border-radius: 8px;
+       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+   }
+   
+   /* Tables */
+   table {
+       width: 100%;
+       border-collapse: collapse;
+       margin-top: 10px;
+   }
+   
+   th, td {
+       border: 1px solid #ddd;
+       padding: 10px;
+       text-align: center;
+   }
+   
+   th {
+       background: #2c3e50;
+       color: white;
+   }
+   
+   tr:nth-child(even) {
+       background: #f9f9f9;
+   }
+   
+   tr:hover {
+       background: #f1f1f1;
+   }
+   
+   /* Buttons */
+   .Upload_btn {
+       background: #f39c12;
+       color: white;
+       padding: 8px 15px;
+       border: none;
+       cursor: pointer;
+       border-radius: 5px;
+       text-decoration: none;
+       font-size: 14px;
+   }
+   
+   .Upload_btn:hover {
+       background: #e67e22;
+   }
+   
+   /* Inputs */
+   .user_input {
+       width: 90%;
+       padding: 8px;
+       margin: 5px 0;
+       border: 1px solid #ccc;
+       border-radius: 5px;
+   }
+   
+   /* Logout Button */
+   .logout_button {
+       background: #e74c3c;
+       color: white;
+       padding: 8px 15px;
+       border: none;
+       cursor: pointer;
+       border-radius: 5px;
+       font-size: 14px;
+       margin-top: 10px;
+   }
+   
+   .logout_button:hover {
+       background: #c0392b;
+   }
+   
+   /* Responsive Design */
+   @media screen and (max-width: 768px) {
+       .sidebar {
+           width: 60px;
+       }
+       
+       .sidebar a {
+           text-align: center;
+           padding: 10px;
+       }
+   
+       .sidebar a span {
+           display: none;
+       }
+   
+       .content {
+           margin-left: 60px;
+           width: calc(100% - 60px);
+       }
+   
+       header .left_area h3 {
+           font-size: 18px;
+       }
+   }
+   
+               </style>
+        </head>
+        <body>
+
+              <input type="checkbox" id="check">
+              <!--header area start-->
+              <header>
+                <label for="check">
+                  <i class="fas fa-bars" id="sidebar_btn"></i>
+                </label>
+                <div class="left_area">
+                  <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+                </div>
+                <div class="right_area">
+
+                </div>
+              </header>
+              <!--header area end-->
+              <!--sidebar start-->
+              <div class="sidebar">
+                <center>
+                  <img src="../assets/1.png" class="profile_image" alt="">
+                    <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+    </center>
+            <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+            <a href="NewLandRec.html"><i class="fas fa-plus-square"></i><span>Add New land Record</span></a>
+            <a href="LoanRecords.html"><i class="fas fa-money-check"></i><span>Loan Details</span></a>
+            <a href="TaxRecords.html"><i class="fas fa-rupee-sign"></i><span>Tax Details</span></a>
+            <a href="CorrectionRequest.html"><i class="fas fa-clipboard-check"></i><span>Correction Request</span></a>
+            <a href="UserDetails.html"><i class="fas fa-user-plus"></i><span>User Details</span></a>
+            <a href="settings.html"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+
+              </div>
+              <!--sidebar end-->
+
+          <div class="content">
+            <form id="landDataForm" action="">
+              <div class="card">
+                <h2>Survey Details</h2>
+                  <table class="table_form">
+                    <tr>
+                      <td>Survey Number</td>
+                      <td>Registration number</td>
+                      <td>Registration year</td>
+                    </tr>
+
+                    <tr>
+                      <td><input id="surveyNo" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" class="user_input" id="" required></td>
+                      <td><input id="registrationNo" type="number" min="0" step="1" oninput="validity.valid||(value='');"name="" value="" class="user_input" id="" required></td>
+                      <td>  <select id="registrationYear"  class="dropDown_list" required>
+                            <option value="Please Select Registration year">Please Select Registration year</option>
+                        </select></td>
+                    </tr>
+                      <tr><td colspan="3"><hr></td></tr>
+                    <tr>
+
+                        <td>Property type</td>
+                        <td>Mutation number</td>
+                        <td>Area of land</td>
+                    </tr>
+
+                    <tr>
+                        <td><select id="propertyType"  name="" value="" class="dropDown_list" required>
+                          <option value="Movable">Movable</option>
+                          <option value="Immovable">Immovable</option>
+                          <option value="Tangible">Tangible</option>
+                          <option value="Intangible">Intangible</option>
+                          <option value="Private">Private</option>
+                          <option value="Public">Public</option>
+                          <option value="Personal">Personal</option>
+                          <option value="Real">Real</option>
+                          <option value="Corporeal">Corporeal</option>
+                          <option value="Incorporeal">Incorporeal</option>
+                          </select></td>
+                        <td><input id="mutationNumber" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                        <td><input id="areaOfLand" type="number" min="0" step="0.01" oninput="validity.valid||(value='');" name="" value="" class="user_input" style="width:65%;" required>
+                        <select id="areaOfLandM" name="" class="dropDown_list" style="width: 10%;" required>
+                            <option value="sq.ft" selected="selected"> Square Feet</option>
+                            <option value="sq.m">Square Meter</option>
+                            <option value="acres">Acre</option>
+                            <option value="hectare">Hectare</option>
+                        </select></td>
+                      </tr>
+                        <tr><td colspan="3"><hr></td></tr>
+                      <tr>
+                        <td>Type of land</td>
+                        <td>Type of irrigation</td>
+                        <td></td>
+                      </tr>
+
+                      <tr>
+                        <td><select id="typeOfLand" name="" value="" class="dropDown_list" required>
+                          <option value="Agricultural" selected="selected">Agricultural</option>
+                          <option value="Non-agricultural">Non-agricultural</option>
+                        </select></td>
+                        <td><select id="typeOfIrrigation" name="" value="" class="dropDown_list" required>
+                          <option value="">Please Select Type of Irrigation</option>
+                          <option value="Warkas land">Warkas land</option>
+                          <option value="Jirayat land (Dry crop)">Jirayat land (Dry crop)</option>
+                          <option value="Bagayat land">Bagayat land</option>
+                          <option value="Rice land">Rice land</option>
+                        </select></td>
+                        <td></td>
+                      </tr>
+                    </table>
+              </div>
+              <div class="card">
+                  <h2>Address Details</h2>
+                      <table class="table_form">
+                        <tr>
+                          <td>Address</td>
+                          <td>District</td>
+                          <td>Tahsil</td>
+                        </tr>
+
+                        <tr>
+                          <td><input  id="address" type="text" name="" value="" class="user_input" required></td>
+
+                          <td><select id="DistrictSel" name="District" size="1" class="dropDown_list">
+                          <option value="" selected="selected">Select District</option>
+                          </select>
+                          </td>
+
+                          <td><select id="TalukaSel" name="Taluka" size="1"class="dropDown_list">
+                          <option value="" selected="selected">Please select District first</option>
+                          </select>
+                          </td>
+                        </tr>
+
+                        <tr><td colspan="3"><hr></td></tr>
+
+                        <tr>
+                          <td>City</td>
+                          <td>Pin code</td>
+                        </tr>
+                        <tr>
+                          <td>
+                          <input id="city" type="text" name="" value="" class="user_input" required>
+                          </td>
+
+                          <td><input id="pincode" type="number" min="0" step="1" oninput="validity.valid||(value='');" name="" value="" class="user_input" required></td>
+                        </tr>
+                      </table>
+              </div>
+              <div class="card">
+                <h2>Owner Details</h2>
+                <table class="table_form">
+                  <tr>
+                    <td>Owner name</td>
+                    <td>Owner Aadhar</td>
+                    <td>Owner id</td>
+                  </tr>
+
+                  <tr>
+                    <td><input id="ownerName" type="text" name="" value="" class="user_input" required></td>
+                    <td><input id="ownerAadhar" type="text" name="" value="" class="user_input" required></td>
+                    <td><input id="ownerId" type="text" name="" value="" class="user_input"></td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="card">
+                <h2>Other Details</h2>
+                  <table class="table_form">
+                    <tr>
+                      <td>Details of Pending litigations</td>
+                      <td>Tax paid</td>
+                      <td>Loan pending</td>
+                    </tr>
+
+                    <tr>
+                      <td><input id="" type="radio" name="pending_litigation_radio" value="false" class="radio_btn" required>No
+                          <input id="" type="radio" name="pending_litigation_radio" value="true" class="radio_btn" required>Yes</td>
+                      <td><input id="" type="radio" name="tax_paid_radio" value="false" class="radio_btn" required>No
+                          <input id="" type="radio" name="tax_paid_radio" value="true" class="" required>Yes</td>
+                      <td><input id="" type="radio" name="loan_pending_radio" value="false" class="radio_btn" required>No
+                          <input id="" type="radio" name="loan_pending_radio" value="true" class="radio_btn" required>Yes</td>
+                    </tr>
+
+                    <tr><td colspan="3"><hr></td></tr>
+
+                    <tr>
+                      <td>Type of crop cultivated in last season</td>
+                      <td>Document (softcopy)</td>
+                      <td></td>
+                    </tr>
+
+                    <tr>
+                      <td> <select id="typeOfCrop" class="dropDown_list" name="" value="" required>
+                        <option value="">Please Select Crop</option>
+                        <option value="None">None</option>
+                        <option value="Jowar">Jowar</option>
+                        <option value="Bajra">Bajra</option>
+                        <option value="Wheat">Wheat</option>
+                        <option value="Cotton">Cotton</option>
+                        <option value="Rice">Rice</option>
+                        <option value="Sugarcane">Sugarcane</option>
+                        <option value="Nagali">Nagali</option>
+                        <option value="Groundnut">Groundnut</option>
+                        <option value="Urad">Urad</option>
+                        <option value="Mung">Mung</option>
+                        <option value="Tur">Tur</option>
+                        <option value="Soybean">Soybean</option>
+                        <option value="Millets">Millets</option>
+                        <option value="Coconuts">Coconuts</option>
+                        <option value="Grapes">Grapes</option>
+                        <option value="Mango">Mango</option>
+                        <option value="Banana">Banana</option>
+                        <option value="Cashew">Cashew</option>
+                        <option value="Peas">Peas</option>
+                        <option value="Barely">Barely</option>
+                      </select> </td>
+                      <td><input id="file" type="file" name="file" value="file" class="user_input" required></td>
+                      <td></td>
+                    </tr>
+                </table>
+              </div>
+
+                <div>
+                  <input id="" type="submit" value="Upload" class="Upload_btn" >
+                </div>
+
+            </form>
+          </div>
+        </body>
+
+
+
+<script type="text/javascript" language="javascript">
+
+var systemAddress = sessionStorage.getItem('Login_Administrator_System_Address');
+$(document).ready(function(){
+        //get uerid
+            var id = sessionStorage.getItem('Login_Admin_Id');
+            var role = sessionStorage.getItem('Login_role');
+         if(role===null || id===null || role!='Admin'){
+                if(role!='Tahsildar') {
+                alert("Authnetication Failed!!");
+                window.location.href = "../login/LoginAdministrator.html";
+                return;
+                }
+            }
+        for(i=2020;i>1907;i--)
+            $('#registrationYear').append(new Option(i,i));
+        console.log(sessionStorage.getItem('Login_Admin_username'));
+        $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+});
+
+            $( "#landDataForm" ).submit(function( event ) {
+                //data to pass
+                var data = new FormData($('form')[0]);
+                data.append("surveyNo", $('#surveyNo').val());
+                data.append("registrationNo", $('#registrationNo').val());
+                data.append("registrationYear", $('#registrationYear').children("option:selected").val());
+                data.append("propertyType",$('#propertyType').children("option:selected").val());
+                data.append("address",$('#address').val());
+                data.append("city",$('#city').val());
+                data.append("taluka",$('#TahsilSel').children("option:selected").val());
+                data.append("district",$('#DistrictSel').children("option:selected").val());
+                data.append("pincode",$('#pincode').val());
+                data.append("ownerName",$('#ownerName').val());
+                data.append("ownerAadhar",$('#ownerAadhar').val());
+                data.append("user",$('#ownerId').val());
+                data.append("mutationNumber",$('#mutationNumber').val());
+                data.append("areaOfLand",$('#areaOfLand').val()+$('#areaOfLandM').children("option:selected").val());
+                data.append("typeOfLand",$('#typeOfLand').children("option:selected").val());
+                data.append("typeOfIrrigation",$('#typeOfIrrigation').children("option:selected").val());
+                data.append("detailsOfPendingLitigation", $("input[name='pending_litigation_radio']:checked").val());
+                data.append("taxPaid", $("input[name='tax_paid_radio']:checked").val());
+                data.append("loanPending", $("input[name='loan_pending_radio']:checked").val());
+                data.append("typeOfCrop", $('#typeOfCrop').children("option:selected").val());
+                data.append("file", $('#file')[0].files[0]);
+                data.append("ownerAddress", systemAddress);
+
+                 alert(JSON.stringify(data));
+                $.ajax({
+                type: "post",
+                url: "http://localhost:8080/Lands",
+                data: data,//{file:filename,land_id:id},
+                cache:false,
+                dataType: 'text',
+                enctype: 'multipart/form-data',
+                processData:false,
+                contentType: false,
+                success: function(response) {
+                            alert("Data Saved Sucessfully !!! ");
+                            console.log("file uploaded Sucessfully");
+                            },
+                error: function(response) {
+                            console.log(response);
+                        }
+                    });
+
+        //prevetn page reloading
+        event.preventDefault();
+        });
+
+     function logOut(){
+        console.log("clicked");
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_Admin_username');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Administrator_System_Address');
+            window.location.href = "../login/LoginAdministrator.html";
+    }
+</script>
+</html>
+<!---->

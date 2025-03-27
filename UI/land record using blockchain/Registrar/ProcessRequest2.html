@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <style>
+            /* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body styling */
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #f4f4f4;
+}
+
+/* Header styling */
+header {
+    background: #2c3e50;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+header h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+header span {
+    color: #f1c40f;
+}
+
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 250px;
+    height: calc(100vh - 60px);
+    background: #34495e;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+
+.sidebar center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.sidebar .profile_image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #f1c40f;
+}
+
+.sidebar h4 {
+    color: white;
+    margin-top: 10px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #f1c40f;
+    color: #2c3e50;
+}
+
+.sidebar i {
+    margin-right: 10px;
+}
+
+/* Content area */
+.content {
+    margin-left: 250px;
+    padding: 80px 20px;
+}
+
+/* Card styling */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+/* Table styling */
+.table_form {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table_form th, .table_form td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table_form th {
+    background: #2c3e50;
+    color: white;
+}
+
+/* Button styling */
+.Upload_btn {
+    background: #f1c40f;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    display: block;
+    margin-top: 10px;
+}
+
+.Upload_btn:hover {
+    background: #2c3e50;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 60px 10px;
+    }
+
+    .table_form th, .table_form td {
+        font-size: 14px;
+    }
+
+    .Upload_btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+        </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+            <h4 id="setusername"></h4>
+  </center>
+      <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="ProcessRequest.html"><i class="fas fa-clipboard-check"></i><span>Process Request</span></a>
+      <a href="OwnershipTransfer.html"><i class="fas fa-exchange-alt"></i><span>Ownership Transfer</span></a>
+      <a href="MyAccount.html"><i class="fas fa-user"></i><span>My Account</span></a>
+      <a href="#0"><i class="fas fa-power-off"></i><span>Logout</span></a>
+
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+          <div class="card">
+            <h2>Process Request</h2>
+            <table class="table_form">
+              <tr>
+                    <table class="table_form">
+                            <tr>
+                                <th>Correction Fields</th>
+                                <th>Correction Values</th>
+                            </tr>
+                            <tbody id="correction">
+
+                            </tbody>
+                    </table>
+                </tr>
+
+                <tr><td><br><br><h3>Message</h3> </td></tr>
+                <tr>
+                    <td><textarea name="name" rows="5" cols="100" class="">Your request is successfully completed.</textarea></td>
+                </tr>
+            </table>
+           </div>
+        <input type="button" value="Completed" class="Upload_btn" onclick="submiy()">
+  </div>
+
+<script>
+    var updateddata={};
+
+        //load data
+        var id = sessionStorage.getItem("id");
+        var landId = sessionStorage.getItem("landId");
+        var correctionFields=sessionStorage.getItem("correctionFields");
+        var correctionValue=sessionStorage.getItem("correctionValue");
+        console.log(id+"\n"+landId+"\n"+correctionFields+"\n"+correctionValue);
+
+    $(document).ready(function(){
+           //Filter values
+        var id = sessionStorage.getItem('Login_Admin_Id');
+        var role = sessionStorage.getItem('Login_role');
+        if(role===null || id===null || role!='Registrar'){
+            alert("Authnetication Failed!!");
+            window.location.href = "../login/LoginAdministrator.html";
+            return;
+        }
+
+        console.log(sessionStorage.getItem('Login_Admin_username'));
+        $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+
+        //objecct Variables
+        var fields=correctionFields.split(';');
+        var value=correctionValue.split(';');
+        for(var i=0; i<fields.length;i++){
+            $("#correction").append("<tr><td> <input type='checkbox' id='"+fields[i]+"' checked >  "+setVarToText(fields[i])+"</td><td><input id='"+value[i]+"' type='text' value='"+value[i]+"'></td></tr>");
+            updateddata[fields[i]]= value[i];
+        }
+    });
+
+    function submiy(){
+        setData(function(data){
+            var keys=Object.keys(updateddata);
+                for(var k of keys){
+                    if(document.getElementById(k).checked){
+                        data[k]=updateddata[k];
+                    }
+                }
+        //data to pass
+            console.log(JSON.stringify(data));
+                    $.ajax({
+                        type: "PUT",
+                        url: "http://localhost:8080/Lands/"+landId,
+                        dataType: 'json',
+                        contentType: "application/json",
+                        data: JSON.stringify(data),
+                        success: function(response) {
+                            if (response !=null) {
+                                alert("Correction Request completed Sucessfully!!! ");
+                                console.log("Correction Request completed Sucessfully!!! ");
+                            }
+                            else {
+                                console.log("Error while saving data\nData not saved!!!");
+                            }
+                        },
+                        error: function(response) {
+                            alert("API Call Error");
+                            console.log(JSON.stringify(response));
+                        }
+                    });
+            //console.log("Correction submitted");
+        });
+    }
+
+    function setData(callback){
+            $.getJSON("http://localhost:8080/Lands/"+landId,function(data){
+                callback(data);
+            });
+        }
+
+    function setVarToText(string) {
+        string = string.charAt(0).toUpperCase() + string.slice(1);
+        string = string.replace(/([a-z])([A-Z])/g, '$1 $2');
+        string = string.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+        return string;
+    }
+</script>
+
+  </body>
+</html>
+
+
+
+<!---->

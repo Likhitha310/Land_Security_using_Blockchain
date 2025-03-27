@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Land Digitization Using Blockchain </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <style>
+        /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background: #2C3E50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.left_area h3 {
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.left_area span {
+    color: #f39c12;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background: #2C3E50;
+    padding-top: 20px;
+    top: 70px;
+    left: 0;
+    transition: 0.5s;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #f39c12;
+    color: #2C3E50;
+}
+
+.profile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.logout_button {
+    background: #f39c12;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.logout_button:hover {
+    background: white;
+    color: #2C3E50;
+}
+
+/* Content */
+.content {
+    margin-left: 260px;
+    padding: 20px;
+    margin-top: 90px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #2C3E50;
+}
+
+/* Table */
+.table_form {
+    width: 100%;
+}
+
+.table_form td {
+    padding: 10px;
+}
+
+.user_input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
+      </style>
+    </head>
+  <body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Land Digitization </br>Using<span> Blockchain</span></h3>
+      </div>
+      <div class="right_area">
+
+      </div>
+    </header>
+    <!--header area end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <center>
+        <img src="../assets/1.png" class="profile_image" alt="">
+        <h4 id="setusername"></h4>
+        <input type="button" onclick="logOut()" value="Logout" class="logout_button">
+    </center>
+    <a href="Dashboard.html"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+    <a href="OwnershipTransfer.html"><i class="fas fa-exchange-alt"></i><span>Ownership Transfer</span></a>
+    <a href="MyAccount.html"><i class="fas fa-user"></i><span>My Account</span></a>
+
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+        <div class="card">
+                <h2>Profile Details</h2>
+                  <table class="table_form">
+                    <tr>
+                      <td> User Id</td>
+                      <td><input id="userId" type="text" name="" value="" class="user_input" readonly></td>
+                     </tr>
+                      <tr>
+                      <td> Username</td>
+                      <td><input id="username" type="text" name="" value="" class="user_input"readonly></td>
+                      </tr>
+                      <tr>
+                      <td> state</td>
+                      <td><input id="state" type="text" name="" value="Maharashtra" class="user_input" readonly></td>
+                      </tr>
+                      <tr>
+                      <td> District</td>
+                      <td><input id="district" type="text" name="" value="" class="user_input" readonly></td>
+                      </tr>
+                      <tr>
+                      <td> Taluka</td>
+                      <td><input id="taluka" type="text" name="" value="" class="user_input" readonly></td>
+                      </tr>
+                    <tr>
+                  <td> Role </td>
+                  <td><input id="role" type="text" name="" value="Registrar" class="user_input" readonly></td>
+                  <tr>
+                  <td> Username </td>
+                  <td><input id="user" type="text" name="" value="" class="user_input" readonly></td>
+                    </tr>
+                      <tr>
+                      <td> Password </td>
+                      <td><input id="password" type="text"  name="" value="" class="user_input"></td>
+                    </tr>
+			<tr>
+                      <td> System Address </td>
+                      <td><input id="systemAddress" type="text"  name="" value="" class="user_input"></td>
+                    </tr>
+                       <!--<button id="" name="" value="Search" class="Upload_btn">Search</button>-->
+                  </table>
+               </div>
+
+    </div>
+
+  </body>
+
+ <script>
+    $(document).ready(function(){
+        //get uerid
+            var id = sessionStorage.getItem('Login_Admin_Id');
+            var role = sessionStorage.getItem('Login_role');
+        if(role===null || id===null || role!='Registrar'){
+            alert("Authnetication Failed!!");
+            window.location.href = "../login/LoginAdministrator.html";
+            return;
+        }
+        console.log(sessionStorage.getItem('Login_Admin_username'));
+        $('#setusername').text(sessionStorage.getItem('Login_Admin_username'));
+
+         $.getJSON("http://localhost:8080/TahsildarDetails/"+id, function(data){ setData(data); });
+      });
+
+     function setData( data ){
+         $("#userId").val(data["id"]);
+             $("#username").val(data["name"]);
+             $("#user").val(data["username"]);
+             $("#district").val(data["district"]);
+             $("#taluka").val(data["taluka"]);
+             $("#password").val(data["password"]);
+             $("#role").val(data["role"]);
+             $("#systemAddress").val(data["systemAddress"]);
+     }
+     
+     function logOut(){
+        console.log("clicked");
+        sessionStorage.removeItem('Login_Admin_Id');
+        sessionStorage.removeItem('Login_Admin_username');
+        sessionStorage.removeItem('Login_role');
+        sessionStorage.removeItem('Login_Administrator_System_Address');
+            window.location.href = "../login/LoginAdministrator.html";
+    }
+</script>
+
+</html>
